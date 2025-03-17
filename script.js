@@ -34,9 +34,9 @@ function displayComponent(row){
   image.src = "images/" + row.image
   image.classList.add("letterimage")
 
-  component.addEventListener("click", function(){
-    window.open(row.page)
-  })
+  // component.addEventListener("click", function(){
+  //   window.open(row.page)
+  // })
 
   let name1 = document.createElement("p")
   name1.textContent = row.Quote
