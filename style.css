@@ -1,0 +1,116 @@
+/* div {
+    width: 200px;
+    height: 200px;
+    background-color: black;
+    padding: 50px;
+    margin: 50px;
+    border: 10px dotted palevioletred;
+    border-radius: 50px;
+} */
+
+body {
+    margin:0;
+    padding:0;
+}
+
+div {
+
+}
+
+.ms-madi-regular {
+    font-family: "Ms Madi", serif;
+    font-weight: 900;
+    font-style: normal;
+  }  
+
+  .abel-regular {
+    font-family: "Abel", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+
+.header {
+    background: rgb(234, 130, 165);
+    width: 100vw;
+    height: 90px;
+    font-family: Ms Madi;
+    font-weight: bold;
+    font-size: 70px;
+    color: rgb(160, 27, 27);
+    color: rgb(255, 237, 221);
+    text-shadow: -2px 0 rgb(160, 27, 27), 0 2px rgb(160, 27, 27), 2px 0 rgb(160, 27, 27), 0 -2px rgb(160, 27, 27);
+    text-align: center;
+    line-height: 90px;
+}
+
+/* .sidebar {
+    background: #fce2a0;
+    position: absolute;
+    width: 10vw;
+    height: 100vh;
+    left: 0;
+} */
+
+.main {
+    width:100vw;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10;
+    justify-content: center;
+    
+}
+
+.background {
+    width:100vw;
+    height:100vh;
+    top:0;
+    left:0;
+    position: fixed;
+    background: rgb(241, 214, 227);
+    background-image: url("images/dolly.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index:-1;
+}
+
+.letter-component {
+    background-color: rgb(255, 237, 221);
+    border: 2px dashed rgb(160, 27, 27);
+    border-radius: 5%;
+    width: 20%;
+    height:270px;
+    font-family: Abel;
+    font-size: 15px;
+    font-weight: medium;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: rgb(100, 13, 13);
+    margin: 10px;
+    display:inline-block;
+    vertical-align: top;
+}
+
+.quote{
+    text-align: center;
+
+}
+
+.from {
+    text-align: right;
+}
+
+.letterimage {
+    height: 50%;
+    display: block;
+    margin: auto;
+    filter: drop-shadow(0 0 2rem rgba(209, 31, 67, 0));
+    
+}
+
+.letter-component:hover .letterimage{
+    filter: drop-shadow(0 0 2rem rgba(209, 31, 67, 1));
+
+}
