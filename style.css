@@ -19,7 +19,7 @@ div {
 
 .ms-madi-regular {
     font-family: "Ms Madi", serif;
-    font-weight: 900;
+    font-weight: 100;
     font-style: normal;
   }  
 
@@ -31,15 +31,15 @@ div {
   
 
 .header {
-    background: rgb(234, 130, 165);
+    background: linear-gradient(to bottom, rgb(232, 126, 161), rgb(235, 179, 169));
     width: 100vw;
     height: 90px;
     font-family: Ms Madi;
     font-weight: bold;
     font-size: 70px;
-    color: rgb(160, 27, 27);
+    color: rgb(182, 23, 78);
     color: rgb(255, 237, 221);
-    text-shadow: -2px 0 rgb(160, 27, 27), 0 2px rgb(160, 27, 27), 2px 0 rgb(160, 27, 27), 0 -2px rgb(160, 27, 27);
+    text-shadow: -2px 0 rgb(182, 23, 78), 0 2px rgb(182, 23, 78), 2px 0 rgb(182, 23, 78), 0 -2px rgb(182, 23, 78);
     text-align: center;
     line-height: 90px;
 }
@@ -68,7 +68,7 @@ div {
     top:0;
     left:0;
     position: fixed;
-    background: rgb(241, 214, 227);
+    background: rgb(255, 209, 215);
     background-image: url("images/dolly.png");
     background-size: cover;
     background-position: center;
@@ -76,19 +76,21 @@ div {
     z-index:-1;
 }
 
+
+
 .letter-component {
     background-color: rgb(255, 237, 221);
-    border: 2px dashed rgb(160, 27, 27);
-    border-radius: 5%;
-    width: 20%;
-    height:270px;
+    border: 2px dashed rgb(182, 23, 78);
+    border-radius: 8%;
+    width: 19%;
+    height: 230px;
     font-family: Abel;
     font-size: 15px;
     font-weight: medium;
-    padding-left: 10px;
-    padding-right: 10px;
-    color: rgb(100, 13, 13);
-    margin: 10px;
+    padding-left: 12px;
+    padding-right: 12px;
+    color: rgb(182, 23, 78);
+    margin: 20px;
     display:inline-block;
     vertical-align: top;
 }
@@ -103,7 +105,7 @@ div {
 }
 
 .letterimage {
-    height: 50%;
+    height: 57%;
     display: block;
     margin: auto;
     filter: drop-shadow(0 0 2rem rgba(209, 31, 67, 0));
@@ -113,4 +115,91 @@ div {
 .letter-component:hover .letterimage{
     filter: drop-shadow(0 0 2rem rgba(209, 31, 67, 1));
 
+}
+
+
+/* Lightbox Styling */
+#lightbox {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* centers the lightbox */
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.lightbox-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centers vertically */
+    align-items: center; /* Centers horizontally */
+    height: 80vh; /* Adjust as needed */
+}
+
+.lightbox-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* Adds spacing between image and text */
+}
+
+#lightboxImage {
+    max-width: 80%;  /* Ensures the image does not exceed 80% of the screen width */
+    max-height: 70vh; /* Limits the image height to 70% of the viewport */
+    height: auto;
+    display: block;
+}
+
+
+#lightboxText {
+    text-align: center;
+    font-size: 18px;
+    color: rgb(255, 255, 255);
+    font-family: "Ms Madi", serif;
+    font-size: 30px;
+    font-weight: medium;
+    text-shadow: 0 0 15px rgb(234, 130, 165), 
+                 0 0 30px rgb(234, 130, 165), 
+                 0 0 45px rgba(234, 130, 165, 0.8);
+}
+
+
+
+.flip-container {
+    width: 100%;
+    height: auto;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.flipper {
+    width: 100%;
+    height: auto;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.front, .back {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    backface-visibility: hidden;
+}
+
+.back {
+    background: white;
+    color: black;
+    font-family: "Abel", sans-serif;
+    text-align: center;
+    padding: 20px;
+    transform: rotateY(180deg);
+}
+
+.flipped .flipper {
+    transform: rotateY(180deg);
 }

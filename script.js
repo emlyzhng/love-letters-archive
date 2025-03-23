@@ -1,54 +1,64 @@
-let main
-
 document.addEventListener("DOMContentLoaded", () => {
-//There must be a div with the class name main in your index.html file. All components will be appended to this div
-  main = document.querySelector(".main")
+  let main = document.querySelector(".main");
   
-  //Replace the url in the fetch with the url your google docs csv url
-fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vQV5q04aVVMH0kuTNNIgqKCtwGNLP5wzY1vFYEH2B6IKtLVQ8G0UkINk6TaVnRWeU-AvIon9aq3r-op/pub?gid=0&single=true&output=csv")
-    .then(response => response.text())
-    .then(csvData => {
-      Papa.parse(csvData, {
-        header: true, // Treat the first row as column headers
-        skipEmptyLines: true, // Ignore empty rows
-        complete: function(results) {
-          results.data.forEach(row => {
-            displayComponent(row);
+  let lightbox = document.getElementById("lightbox");
+  let lightboxImage = document.getElementById("lightboxImage");
+  let lightboxText = document.getElementById("lightboxText");
+  let flipContainer = document.querySelector(".flip-container");
+
+  // Fetch CSV data
+  fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vQV5q04aVVMH0kuTNNIgqKCtwGNLP5wzY1vFYEH2B6IKtLVQ8G0UkINk6TaVnRWeU-AvIon9aq3r-op/pub?gid=0&single=true&output=csv")
+      .then(response => response.text())
+      .then(csvData => {
+          Papa.parse(csvData, {
+              header: true,
+              skipEmptyLines: true,
+              complete: function(results) {
+                  results.data.forEach(row => {
+                      displayComponent(row);
+                  });
+              }
           });
-        }
       });
-    });
+
+      function displayComponent(row) {
+        let component = document.createElement("div");
+        component.classList.add("letter-component");
+    
+        let name = document.createElement("p");
+        name.textContent = "To: " + row.To;
+        name.classList.add("to");
+    
+        let image = document.createElement("img");
+        image.src = "images/" + row.image;
+        image.classList.add("letterimage");
+    
+        let from = document.createElement("p");
+        from.textContent = "From: " + row.From;
+        from.classList.add("from");
+    
+        component.append(name, image, from);
+        main.append(component);
+    
+        // Open Lightbox when clicking on image
+        image.addEventListener("click", function() {
+            lightboxImage.src = image.src;
+            lightboxText.textContent = row.Quote; // Quote appears only in the lightbox
+            lightbox.style.display = "flex";
+        });
+    }
+    
+
+  // Close lightbox when clicking outside the content
+  lightbox.addEventListener("click", function(event) {
+      if (!event.target.closest(".lightbox-content")) {
+          lightbox.style.display = "none";
+          flipContainer.classList.remove("flipped");
+      }
+  });
+
+  // Flip the card when clicking on the image inside lightbox
+  lightboxImage.addEventListener("click", function() {
+      flipContainer.classList.toggle("flipped");
+  });
 });
-
-function displayComponent(row){
-  console.log(row)
-  //your code here
-  let component = document.createElement("div")
-  component.classList.add("letter-component")
-
-  let name = document.createElement("p")
-  name.textContent = row.To
-  name.classList.add("to")
-
-  let image = document.createElement("img")
-  image.src = "images/" + row.image
-  image.classList.add("letterimage")
-
-  // component.addEventListener("click", function(){
-  //   window.open(row.page)
-  // })
-
-  let name1 = document.createElement("p")
-  name1.textContent = row.Quote
-  name1.classList.add("quote")
-
-  let name2 = document.createElement("p")
-  name2.textContent = row.From
-  name2.classList.add("from")
-
-  component.append(name)
-  component.append(image)
-  component.append(name1)
-  component.append(name2)
-  main.append(component)
-}
